@@ -8,7 +8,7 @@
 sh "${mvnHome}/bin/mvn package"
    
 }
-   stage('Deploy to Tomcat'){
+   stage('Deploy to Remote Machine'){
       
    sshagent(['War-Deployment']) {
     sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.122.77:/usr/local/glassfish4/bin/'
