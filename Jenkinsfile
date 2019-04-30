@@ -1,5 +1,6 @@
   node{
    stage('SCM Checkout'){
+     [$class: 'LocalBranch', localBranch: "**"]
      git 'https://github.com/sohaib629/my-app'
    }
    stage('Compile-Package'){
