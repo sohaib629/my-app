@@ -1,9 +1,7 @@
-properties([parameters([choice(choices: 'develop\nfeature-1\nfeature-2\nfeature-3\nmaster', description: 'Select the Branch to build', name: 'branch')])])
 
-node{
+  node{
    stage('SCM Checkout'){
-    echo "Pulling changes from the branch ${params.branch}"
-    git url: 'https://github.com/sohaib629/my-app', branch: "${params.branch}"
+     git 'https://github.com/sohaib629/my-app'
    }
    stage('Compile-Package'){
     
