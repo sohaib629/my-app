@@ -1,19 +1,16 @@
-  node{
+properties([parameters([choice(choices: 'develop\nfeature-1\nfeature-2\nfeature-3\nmaster', description: 'Select the Branch to Build', name: 'branch')])])
+
+node{
    stage('SCM Checkout'){
-     git 'https://github.com/sohaib629/my-app'
+    echo "Pulling changes from the branch ${params.branch}"
+    git url: 'https://github.com/sohaib629/my-app', branch: "${params.branch}"
+	   
    }
+	
    stage('Compile-Package'){
     
       def mvnHome =  tool name: 'Maven3.6', type: 'maven'   
       sh "${mvnHome}/bin/mvn package"
-
-stage('Email Notification'){
-
-	mail bcc: '', body: '''Hi, This is Sohaib\'s Jenkins Pipeline Job Notification.
-	Thank you,
-	Sohaib''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'sohaib.uft@gmail.com'
-
-}
 
    }
 
